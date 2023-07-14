@@ -1,47 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Масив</title>
+  <title>Recursive Power Function</title>
   <script>
-    function createArray() {
-      var length = parseInt(document.getElementById('lengthInput').value);
-      var elements = document.getElementById('elementsInput').value.split(',');
-      var array = [];
-
-      for (var i = 0; i < length; i++) {
-        array.push(parseInt(elements[i]));
+    function pow(num, degree) {
+      if (degree === 0) {
+        return 1;
+      } else {
+        return num * pow(num, degree - 1);
       }
-
-      return array;
     }
 
-    function sortArray() {
-      var array = createArray();
-      array.sort(function(a, b) {
-        return a - b;
-      });
-
-      document.getElementById('arrayOutput').innerHTML = array;
-    }
-
-    function removeElements() {
-      var array = createArray();
-      array.splice(1, 4);
-
-      document.getElementById('arrayOutput').innerHTML = array;
+    function calculatePower() {
+      var num = parseInt(document.getElementById("number").value);
+      var degree = parseInt(document.getElementById("degree").value);
+      var result = pow(num, degree);
+      document.getElementById("result").innerHTML = "Result: " + result;
     }
   </script>
 </head>
 <body>
-  <label for="lengthInput">Довжина масиву:</label>
-  <input type="number" id="lengthInput">
-<br>
-  <label for="elementsInput">Елементи масиву (розділені комами):</label>
-  <input type="text" id="elementsInput">
-</br>
-  <button onclick="sortArray()">Сортувати за зростанням</button>
-  <button onclick="removeElements()">Видалити елементи</button>
-
-  <div id="arrayOutput"></div>
+  <label for="number">Number:</label>
+  <input type="number" id="number">
+  <br>
+  <label for="degree">Degree:</label>
+  <input type="number" id="degree">
+  <br>
+  <button onclick="calculatePower()">Calculate Power</button>
+  <p id="result"></p>
 </body>
 </html>
